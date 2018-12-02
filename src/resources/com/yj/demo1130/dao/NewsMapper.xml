@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.yj.demo1130.dao.NewsMapper">
+    <select id="findall" resultType="com.yj.demo1130.vo.NewsDetail">
+        select * from news_detail where 1 = 1
+        <if test="title != null">
+              and title like CONCAT('%',#{title},'%')
+        </if>
+        order by createdate desc limit #{pageBean.startRow},#{pageBean.pageSize}
+    </select>
+    <select id="findByid" resultType="com.yj.demo1130.vo.NewsComment">
+        select * from news_comment where newsid = #{id}
+    </select>
+    <insert id="add">
+        insert into news_comment (newsid,content,author,createdate) values(#{newsComment.newsid},#{newsComment.content},#{newsComment.author},#{newsComment.createdate})
+    </insert>
+    <delete id="deln">
+        delete from news_detail where id = #{id}
+    </delete>
+    <delete id="delc">
+        delete from news_comment where newsid = #{id}
+    </delete>
+    <select id="count" resultType="java.lang.Integer">
+        select count(*) from news_detail where 1 = 1
+        <if test="title != null">
+            and title like CONCAT('%',#{title},'%')
+        </if>
+    </select>
+</mapper>
