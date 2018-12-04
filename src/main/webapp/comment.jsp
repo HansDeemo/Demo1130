@@ -40,7 +40,7 @@
 <script>
     $(function () {
         $("#alpha").click(function () {
-            window.location.href("list.do")
+            window.location.href="list.do"
         })
     })
 </script>

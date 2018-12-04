@@ -30,7 +30,7 @@
 <script>
     $(function () {
         $("[name=back]").click(function () {
-            window.location.href("list.do")
+            window.location.href="list.do"
         })
     })
 </script>
